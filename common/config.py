@@ -1,7 +1,7 @@
 import os
 import configparser
 
-from common.constants import YETI_ROOT
+from common.constants import YETI_FEEDS_ROOT
 
 
 class Dictionary(dict):
@@ -16,8 +16,8 @@ class Dictionary(dict):
 class Config:
 
     def __init__(self):
-        config = configparser.SafeConfigParser(allow_no_value=True)
-        config.read(os.path.join(YETI_ROOT, 'yeti.conf'))
+        config = configparser.ConfigParser(allow_no_value=True)
+        config.read(os.path.join(YETI_FEEDS_ROOT, 'yeti_feeds.conf'))
 
         for section in config.sections():
             setattr(self, section, Dictionary())
@@ -49,12 +49,12 @@ class Config:
         return self[section][key]
 
 
-yeti_config = Config()
+yeti_feeds_config = Config()
 
 
-yeti_config.set_default_value(
+yeti_feeds_config.set_default_value(
     'async', 'enabled', os.environ.get('YETI_ASYNC_ENABLED') or False)
-yeti_config.set_default_value(
+yeti_feeds_config.set_default_value(
     'async', 'redis_server', os.environ.get('YETI_REDIS_SERVER') or '127.0.0.1')
-yeti_config.set_default_value(
+yeti_feeds_config.set_default_value(
     'async', 'redis_port', os.environ.get('YETI_REDIS_PORT') or 6379)
