@@ -55,6 +55,6 @@ yeti_feeds_config = Config()
 yeti_feeds_config.set_default_value(
     'async', 'enabled', os.environ.get('YETI_ASYNC_ENABLED') or False)
 yeti_feeds_config.set_default_value(
-    'async', 'redis_server', os.environ.get('YETI_REDIS_SERVER') or '127.0.0.1')
+    'async', 'redis_server', os.environ.get('YETI_FEEDS_REDIS_SERVER') or '127.0.0.1')
 yeti_feeds_config.set_default_value(
-    'async', 'redis_port', os.environ.get('YETI_REDIS_PORT') or 6379)
+    'async', 'redis_port', os.environ.get('YETI_FEEDS_REDIS_PORT') or 6379)
